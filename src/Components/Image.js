@@ -28,11 +28,11 @@ const useStyles = makeStyles((theme) => ({
 width:"100%",
   },
   gridListTile: {
-    marginLeft:"2%",
-    marginRight:"2%",
+    marginLeft:"1%",
+    marginRight:"1%",
     
-   
-    marginBottom:"2%",marginTop:"2%",
+    marginBottom:"1%",
+    marginTop:"1%",
 
   
   },
@@ -40,11 +40,14 @@ width:"100%",
     marginTop:"10%",marginLeft:"11%",
   },
   title:{
-    marginLeft:"11%",marginTop:"2%",font: " 18px  Roboto",
+    marginLeft:"11%",
+    marginTop:"3%",
+    marginBottom:"-2%",
+    font: " 12px  Roboto",
   },
 
   icon:{
-    width:"5%",
+    width:"4%",
  
   },
 }));
@@ -86,7 +89,9 @@ export default function ImageGridList(props) {
   return (
     <div>
     <div className={classes.header}>
-         <div> <Typography variant='h6' style={{font: " Bold 24px Roboto "}}> Thank your mentor on this 'Teacher's day'</Typography> </div></div>
+
+           <img src={mail} className={classes.icon}/>
+           <span style={{display:"inline-block",marginLeft:"1%",font: " Bold 18px Roboto "}}> Thank your mentor on this 'Teacher's day'</span> </div>
       <Typography variant='body1' className={classes.title}> Choose a photo card, write your message. Share!</Typography>
     <div className={classes.root}>
       <GridList cellHeight={150}className={classes.gridList} cols={4}>
