@@ -1,11 +1,13 @@
-import React from 'react';
+import React, {useState} from 'react';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import './Style.css';
 import image from '../Image/imageg.jpg'
 import logo from '../Image/tarentologo.png';
 import { makeStyles } from "@material-ui/core/styles";
-
+import axios from 'axios';
+import * as API from '../constants/Api';
+import {browserHistory} from 'react-router';
 
 //Adding js styles
 const useStyles = makeStyles((theme) => ({
@@ -41,31 +43,48 @@ const useStyles = makeStyles((theme) => ({
 
 function Note(props) {
 
-    const [mentor, setMentor] = React.useState('');
-    const [message, setMessage] = React.useState('');
-    const [name, setName] = React.useState('');
+    const [recipient, setRecipient] = React.useState('');
+    const [note, setNote] = React.useState('');
+    const [sender, setSender] = React.useState('');
+    const[shareId,setShareId]=useState();  
     const classes = useStyles();
 
     const handleChange1 = (event) => {
-        setMentor(event.target.value);
-        console.log(mentor);
+        setRecipient(event.target.value);
+        console.log(recipient);
       };
 
     const handleChange2 = (event) => {
-        setMessage(event.target.value);
-        console.log(message);
+        setNote(event.target.value);
+        console.log(note);
       };
 
     const handleChange3 = (event) => {
-        setName(event.target.value);
-        console.log(name);
+        setSender(event.target.value);
+        console.log(sender);
       };
-
+     
       const handleSubmit = (event) => {
         event.preventDefault();
-        console.log(message);
-        console.log(name);
-      }
+        console.log(note);
+        console.log(sender);
+        axios.post(API.INSERT_WISH,JSON.stringify({
+                  "emailID":props.emailId,
+                  "sender":sender,
+                  "recipient":recipient,
+                  "note":note,
+                  "imageId":props.image.img,
+              }),{headers:{"Content-Type":"application/json"}})
+              .then(res => {
+                setShareId(res.data.shareId);
+                setNote('');
+                setSender('');
+                setRecipient('');
+                browserHistory.push("/Login");
+              })
+              
+          };
+     
   
     return (
       <div className = "Space" className = "Align-text">
