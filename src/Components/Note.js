@@ -65,10 +65,10 @@ function Note(props) {
         console.log(note);
       };
 
-    const handleChange3 = (event) => {
-        setSender(event.target.value);
-        console.log(sender);
-      };
+    // const handleChange3 = (event) => {
+    //     setSender(props.name);
+    //     console.log(sender);
+    //   };
      
       const handleSubmit = (event) => {
         event.preventDefault();
@@ -80,10 +80,11 @@ function Note(props) {
                   "sender":sender,
                   "recipient":recipient,
                   "note":note,
-                  "imageId":props.image.img,
+                  "imageId":props.image,
               }),{headers:{"Content-Type":"application/json"}})
               .then(res => {
                 setShareId(res.data.shareId);
+                browserHistory.push("/Share" + shareId);
                 setNote('');
                 setSender('');
                 setRecipient('');
@@ -137,10 +138,8 @@ function Note(props) {
             name="Name"
             required
             InputLabelProps={{required: false}}
-            onChange={handleChange3}
-            // value={this.state.text}
-            // onChange={this.handleChange}
-            // variant="outlined"
+            // onChange={handleChange3}
+            value={props.name}
             className={classes.textField}
             fullWidth = "true"/>
 

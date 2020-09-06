@@ -1,7 +1,6 @@
 import React,{useEffect} from 'react';
-import logo from '../Image/tarentologo.png';
+// import logo from '../Image/tarentologo.png';
 import '../App.css';
-import './Style.css';
 import {InlineReactionButtons} from 'sharethis-reactjs';
 import {InlineShareButtons} from 'sharethis-reactjs';
 import {StickyShareButtons} from 'sharethis-reactjs';
@@ -20,20 +19,13 @@ import  { useRef, useState } from 'react';
 
 const useStyles = makeStyles({
     root: {
-      maxWidth: '25%',
+      maxWidth: '360px',
       marginLeft:'38.5%',
-      marginTop:'1%',
-      height:"50%",
+      marginTop:'0.5%',
+      height:'600px',
     },
-    button:{align: 'center',
-    backgroundColor: "#004040",
-    color:"#FFFFFF", width:'7%',
-     height: 38, marginLeft:"20%",
-     },
   });
-
-  
-function Share(props) {
+export default function Publicshare(props) {
   
   const [copySuccess, setCopySuccess] = useState('');
   const textAreaRef = useRef(null);
@@ -42,46 +34,45 @@ function Share(props) {
   const [sender, setSender] = React.useState('');
   const[imageId,setImageId]=useState();  
 
-  const  copyToClipboard = (event) =>{
+  function copyToClipboard(e) {
     textAreaRef.current.select();
     document.execCommand('copy');
     // This is just personal preference.
     // I prefer to not show the whole text area selected.
-    event.target.focus();
+    e.target.focus();
     setCopySuccess('Copied!');
   };
 
-//   useEffect(() => {
-//     axios
-//       .get(API.RETRIEVE_WISH,{ params:{shareId: props.shareId}})
-//       .then(response  => setSender(response.sender),
-//       setNote(response.note),
-//       setRecipient(response.recepient),
-//       setSender(response.sender),
-//       setImageId(response.imageId));
-//   },[shareId]);
+  // useEffect(() => {
+  //   axios
+  //     .get(API.RETRIEVE_WISH,{ params:{shareId: props.shareId}})
+  //     .then(response  => setSender(response.sender),
+  //     setNote(response.note),
+  //     setRecipient(response.recepient),
+  //     setSender(response.sender),
+  //     setImageId(response.imageId));
+  // },[]);
 
 
   const classes = useStyles();
   return (
-      // style:className=" split1 center1"
     <div>
-      
-       <div className = "Space"> <img  src={logo} alt="cur" className="center"/></div> 
      <Card className={classes.root} >
       <CardActionArea>
-        
-         <img src={img} style={{width:"100%"}}/>
-       
+        <CardMedia
+          component="img"
+          width='405.26'
+          image={img}
+        />
         <CardContent>
           <Typography gutterBottom variant="h5" component="h2">
-          Thank you {recipient}
+            Thank you Ramesh!
           </Typography>
           <Typography variant="body" color="textSecondary" component="p">
-          Happy Teacher's day{note}
+            happy
           </Typography>
           <Typography variant="h6" style={{float:"right"}}>
-            Hema{sender}
+            Arpan Das
           </Typography>
         </CardContent>
       </CardActionArea>
@@ -105,25 +96,23 @@ function Share(props) {
 <div>
       <div style={{paddingTop:'1%'}}></div>
       {/* <form >
-          
         <textarea 
           ref={textAreaRef}
           value='sdefg'
         />
-      </form> */}
+      </form>
       {
        /* Logical shortcut for only displaying the 
           button if the copy command exists */
-       document.queryCommandSupported('copy') &&
-        <div>
-          <button onClick={copyToClipboard}  variant="contained" 
-              className ={classes.button}>COPY</button> 
-          {copySuccess}
-        </div>
-      }
+    //    document.queryCommandSupported('copy') &&
+    //     <div>
+    //       <button onClick={copyToClipboard}>Copy</button> 
+    //       {copySuccess}
+    //     </div>
+      } */
     </div>
-    <div style={{paddingTop:'1.5%'}}></div>
-    <InlineShareButtons
+    <div style={{paddingTop:'1%'}}></div>
+    {/* <InlineShareButtons
       config={{
         alignment: 'center',  // alignment of buttons (left, center, right)
         color: 'social',      // set the color of buttons (social, white)
@@ -152,9 +141,9 @@ function Share(props) {
         subject: 'custom email subject',  // (only for email sharing)
         username: 'custom twitter handle' // (only for twitter sharing)
       }}
-    />
+    /> */}
     
-    <StickyShareButtons
+    {/* <StickyShareButtons
       config={{
         alignment: 'left',    // alignment of buttons (left, right)
         color: 'social',      // set the color of buttons (social, white)
@@ -189,9 +178,8 @@ function Share(props) {
         username: 'custom twitter handle' // (only for twitter sharing)
 
       }}
-    />
+    /> */}
   </div>
   );
 }
 
-export default Share;
