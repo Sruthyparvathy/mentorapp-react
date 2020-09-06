@@ -16,7 +16,7 @@ const useStyles = makeStyles((theme) => ({
             marginRight: theme.spacing.unit,
             // width: 350,
             paddingTop: "1%",
-            marginTop: "2%",
+            marginTop: "1%",
             marginLeft:'0%',
             color: "black",
             // minHeight: '40%', 
@@ -39,6 +39,12 @@ const useStyles = makeStyles((theme) => ({
             borderColor: '#F2F2F2',
             } 
             },
+
+            button:{align: 'center',
+             backgroundColor: "#004040",
+             color:"#FFFFFF", width:'25%',
+              height: 38, textTransform: 'none', 
+              float:'right'},
 }));
 
 function Note(props) {
@@ -66,6 +72,7 @@ function Note(props) {
      
       const handleSubmit = (event) => {
         event.preventDefault();
+        browserHistory.push("/Share");
         console.log(note);
         console.log(sender);
         axios.post(API.INSERT_WISH,JSON.stringify({
@@ -80,7 +87,7 @@ function Note(props) {
                 setNote('');
                 setSender('');
                 setRecipient('');
-                browserHistory.push("/Login");
+             
               })
               
           };
@@ -139,7 +146,7 @@ function Note(props) {
 
           <div className="Space">
             <Button variant="contained" 
-              style={{align: 'center', backgroundColor: "#004040",color:"#FFFFFF", width:'25%', height: 38, textTransform: 'none', float:'right'}}
+              className ={classes.button}
               type="submit">
                 Post
             </Button>
