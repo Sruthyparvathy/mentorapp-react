@@ -19,7 +19,7 @@ export default function Home (props){
         <div className="split1 left1"> <ImageGridList onPassImage = {updateImage}/> </div>
       
         <div className="split1 right1"> 
-        <div> <Note image={image}/></div>
+        <div> <Note image={image} emailId={props.emailId}/></div>
        </div>  
     </div>  
         )
