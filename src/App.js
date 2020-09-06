@@ -4,7 +4,7 @@ import './App.css';
 import Login from './Components/Login';
 import Home from './Components/Home';
 import Share from   './Components/Share';
-
+import Publicshare from   './Components/PublicShare';
 
 class App extends Component{
   render(){
@@ -14,8 +14,9 @@ class App extends Component{
             <Route> 
         <Route exact path="/" component={Login}/>
         <Route exact path="/Login" component={Login} />
-        <Route exact path="/Home" component={Home} />
+        <Route exact path={"/Home/:email/:name"} component={Home} />
         <Route exact path="/Share" component={Share} />
+        <Route exact path="/Tarento/Mentor-Wish/:shareId" component={Publicshare} />
         </Route>
       </Router>
     
